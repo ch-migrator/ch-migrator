@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  ch:
+    image: yandex/clickhouse-server
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - ch_data:/var/lib/clickhouse
+
+  zookeeper:
+    network_mode: host
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      KAFKA_OPTS: "-Dzookeeper.4lw.commands.whitelist=*"
+
+volumes:
+  db_data:
+  ch_data:
