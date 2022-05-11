@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   ch:
-    image: yandex/clickhouse-server
+    build: ch-dev-config/clickhouse.dockerfile
     network_mode: host
     restart: unless-stopped
     volumes:
