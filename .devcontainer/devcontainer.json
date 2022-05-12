@@ -1,16 +1,23 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.234.0/containers/typescript-node
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.191.1/containers/docker-existing-dockerfile
 {
-	"name": "Node.js & TypeScript",
-	"build": {
-		"dockerfile": "Dockerfile",
-		// Update 'VARIANT' to pick a Node version: 18, 16, 14.
-		// Append -bullseye or -buster to pin to an OS version.
-		// Use -bullseye variants on local on arm64/Apple Silicon.
-		"args": { 
-			"VARIANT": "16-bullseye"
-		}
-	},
+	"name": "ch-migrator",
+	"workspaceFolder": "/workspace",
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+	"service": "migrator",
+
+	// "build": {
+	// 	"dockerfile": "Dockerfile",
+	// 	// Update 'VARIANT' to pick a Node version: 18, 16, 14.
+	// 	// Append -bullseye or -buster to pin to an OS version.
+	// 	// Use -bullseye variants on local on arm64/Apple Silicon.
+	// 	"args": { 
+	// 		"VARIANT": "16-bullseye"
+	// 	}
+	// },
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {},
@@ -18,19 +25,32 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"dbaeumer.vscode-eslint"
+		"dbaeumer.vscode-eslint",
+		"ms-azuretools.vscode-docker",
+		"editorconfig.editorconfig",
+		"mikestead.dotenv",
+		"esbenp.prettier-vscode",
+		"firsttris.vscode-jest-runner",
+		"bungcip.better-toml"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [9000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
+	"postCreateCommand": "script/setup",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "node",
+	"remoteUser": "node", 
+	
 	"features": {
 		"git": "latest",
-		"homebrew": "latest"
+		"homebrew": "latest",
+		"github-cli": "latest",
+		"docker-from-docker": {
+		  "version": "latest",
+		  "moby": true
+		}
 	}
 }
+
