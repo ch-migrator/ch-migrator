@@ -3,17 +3,19 @@ version: "3.8"
 services:
   migrator:
     build:
-      context: ..
-      dockerfile: ch-dev-config/codespaces.Dockerfile
-    network_mode: host
-    restart: unless-stopped
+      context: ../ch-dev-config
+      dockerfile: codespaces.Dockerfile
     volumes:
-      - ch_data:/var/lib/clickhouse
+      - ..:/workspace:cached
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+    # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
+    network_mode: host
 
   ch:
     build:
-      context: ..
-      dockerfile: ch-dev-config/clickhouse.dockerfile
+      context: ../ch-dev-config
+      dockerfile: clickhouse.dockerfile
     network_mode: host
     restart: unless-stopped
     volumes:
@@ -29,5 +31,4 @@ services:
       KAFKA_OPTS: "-Dzookeeper.4lw.commands.whitelist=*"
 
 volumes:
-  db_data:
   ch_data:
