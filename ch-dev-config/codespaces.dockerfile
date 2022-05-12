@@ -8,8 +8,8 @@ RUN sudo apt-get update && \
 	sudo apt-get update && \
 	sudo apt-get install -y clickhouse-client netcat
 
-RUN sudo apt-get update \
-  && sudo apt-get install build-essential \
+# RUN sudo apt-get update \
+#   && sudo apt-get install build-essential \
 
 # COPY "Brewfile" "Brewfile"
 
