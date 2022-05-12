@@ -34,7 +34,6 @@
     "setup": "scripts/setup",
     "setup:services": "run-p setup:clickhouse",
     "setup:clickhouse": "scripts/setup-services/clickhouse",
-    "precommit": "lint-staged",
     "travis-deploy-once": "travis-deploy-once"
   },
   "lint-staged": {
