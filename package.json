@@ -31,6 +31,9 @@
     "commit": "git-cz",
     "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
+    "setup": "scripts/setup",
+    "setup:services": "run-p setup:clickhouse",
+    "setup:clickhouse": "scripts/setup-services/clickhouse",
     "precommit": "lint-staged",
     "travis-deploy-once": "travis-deploy-once"
   },
@@ -96,6 +99,7 @@
     "jest-config": "^23.6.0",
     "lint-staged": "^8.0.0",
     "lodash.camelcase": "^4.3.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.14.3",
     "prompt": "^1.0.0",
     "replace-in-file": "^3.4.2",
